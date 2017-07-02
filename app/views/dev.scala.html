@@ -1,0 +1,28 @@
+@(userlist:List[models.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@main(Messages("dev.title")) {
+    
+	<table class="mono" border="1">
+	<tr>
+		<td class="devtd"><b>fullName</b></td>
+		<td class="devtd">userID</td>
+		<td class="devtd">handle</td>
+		<td class="devtd">password</td>
+		<td class="devtd">loginInfo</td>	
+		<td class="devtd">activated</td>
+	</tr>
+    @for(user <- userlist) {
+		<tr>
+			<td class="devtd"><b>@user.fullName</b></td>
+			<td class="devtd">@user.userID</td>
+			<td class="devtd">@user.handle</td>
+			<td class="devtd">@user.regpass</td>
+			<td class="devtd">@user.loginInfo</td>	
+			<td class="devtd">
+			<a href="@routes.ApplicationController.devflip(user.userID.toString())">@user.activated</a>
+			</td>
+		</tr>
+	}
+	</table>
+    
+}
